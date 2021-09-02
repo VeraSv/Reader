@@ -29,15 +29,15 @@ namespace Reader
                     switch (command)
                     {
                         case "f":
-                            findWord(readText, word, regex);
+                            FindWord(readText, word, regex);
                             break;
                         case "r":
                             Console.Write("Enter replace: ");
                             string replace = Console.ReadLine();
-                            replaceWord(readText, word, replace, path, regex);
+                            ReplaceWord(readText, word, replace, path, regex);
                             break;
                         case "d":
-                            deleteWord(readText, word, path, regex);
+                            DeleteWord(readText, word, path, regex);
                             break;
                         default:
                             Console.Write("UnKnown command  \n");
@@ -53,7 +53,7 @@ namespace Reader
             }
         }
 
-        static void findWord(string readText, string word, Regex regex)
+        static void FindWord(string readText, string word, Regex regex)
         {
 
             int counter = 0;
@@ -70,7 +70,7 @@ namespace Reader
             }
         }
 
-        static void replaceWord(string readText, string word, string replace, string path, Regex regex)
+        static void ReplaceWord(string readText, string word, string replace, string path, Regex regex)
         {
             readText = regex.Replace(readText, replace);
             
@@ -80,7 +80,7 @@ namespace Reader
             }
             Console.Write("Replaced successfully  \n");
         }
-        static void deleteWord(string readText, string word,string path, Regex regex)
+        static void DeleteWord(string readText, string word,string path, Regex regex)
         {
             readText = regex.Replace(readText, "");
             using (StreamWriter file = new StreamWriter(path))
