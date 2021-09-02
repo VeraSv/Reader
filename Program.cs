@@ -10,14 +10,13 @@ namespace Reader
         static void Main(string[] args)
         {
 
-            Console.Write("Enter the Path: ");
-            string path = Console.ReadLine();
-            bool exist = File.Exists(path);
-
-            if (exist)
+            while (true)
             {
+                Console.Write("Enter the Path: ");
+                string path = Console.ReadLine();
+                bool exist = File.Exists(path);
 
-                while (true)
+                if (exist)
                 {
                     Console.Write("Enter a word: ");
                     string word = Console.ReadLine();
@@ -45,11 +44,12 @@ namespace Reader
                             break;
                     }
                 }
-            }
-            else
-            {
-                Console.Write("File is not exist \n");
 
+                else
+                {
+                    Console.Write("File is not exist \n");
+
+                }
             }
         }
 
@@ -57,7 +57,7 @@ namespace Reader
         {
 
             int counter = 0;
-           
+
             MatchCollection matches = regex.Matches(readText);
             if (matches.Count > 0)
             {
@@ -73,14 +73,14 @@ namespace Reader
         static void ReplaceWord(string readText, string word, string replace, string path, Regex regex)
         {
             readText = regex.Replace(readText, replace);
-            
+
             using (StreamWriter file = new StreamWriter(path))
             {
                 file.Write(readText);
             }
             Console.Write("Replaced successfully  \n");
         }
-        static void DeleteWord(string readText, string word,string path, Regex regex)
+        static void DeleteWord(string readText, string word, string path, Regex regex)
         {
             readText = regex.Replace(readText, "");
             using (StreamWriter file = new StreamWriter(path))
